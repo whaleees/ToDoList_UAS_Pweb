@@ -2,12 +2,13 @@
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        ErrorMessage.Visible = false; 
+        ErrorMessage.Visible = false;
     }
 
     protected void LoginButtonClick(object sender, EventArgs e)
@@ -30,21 +31,37 @@ public partial class _Default : System.Web.UI.Page
             {
                 conn.Open();
 
-                string query = "SELECT Password FROM Users WHERE Email = @Email";
+                string query = "SELECT UserID, Username, Password FROM Users WHERE Email = @Email";
+                string username = null;
+                string storedPassword = null;
+                string userId = null;
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Email", email);
 
-                    object storedPasswordObj = cmd.ExecuteScalar();
-
-                    if (storedPasswordObj != null)
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        string storedPassword = storedPasswordObj.ToString();
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+
+                            userId = reader["UserID"].ToString();
+                            username = reader["Username"].ToString();
+                            storedPassword = reader["Password"].ToString();
+
+                        }
+                    }
+
+                    if (storedPassword != null)
+                    {
 
                         if (storedPassword == hashedPassword)
-                        {
-                            Response.Redirect("Homepage.aspx");
+                        {   
+                            Session["Username"] = username;
+                            Session["UserID"] = userId;
+                            String routeUrl = VirtualPathUtility.ToAbsolute("~/");
+                            Response.Redirect(routeUrl);
                         }
                         else
                         {

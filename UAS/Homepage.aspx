@@ -8,5 +8,13 @@
 </head>
 <body>
     <h1>HOME!!!!!</h1>
+    
+    <!-- Display Welcome Message -->
+    <asp:Label ID="WelcomeLabel" runat="server" Text=""></asp:Label>
+
+    <!-- Form for logout -->
+    <form id="logoutForm" runat="server">
+        <asp:Button ID="LogoutButton" runat="server" Text="Logout" OnClick="LogoutButton_Click" />
+    </form>
 </body>
 </html>
