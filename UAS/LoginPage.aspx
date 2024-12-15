@@ -23,6 +23,11 @@
         </div>
         
         <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="LoginButtonClick" CssClass="w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200" />
+        
+        <div class="mt-4 text-center">
+            <span class="text-gray-600">Don't have an account?</span>
+            <a href="RegisterPage.aspx" class="text-indigo-600 font-semibold hover:text-indigo-800">Register here</a>
+        </div>
     </form>
 </body>
 </html>

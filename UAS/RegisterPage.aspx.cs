@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -68,7 +69,8 @@ public partial class _Default : System.Web.UI.Page
                     insertCmd.ExecuteNonQuery();
                     ShowMessage("Registration successful!", true);
 
-                    Response.Redirect("LoginPage.aspx");
+                    String routeUrl = VirtualPathUtility.ToAbsolute("~/login");
+                    Response.Redirect(routeUrl);
                 }
             }
             catch (Exception ex)
