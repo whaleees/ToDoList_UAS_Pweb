@@ -285,17 +285,22 @@ Inherits="_Default" %>
 
     <script>
         function formatToDate(dateString) {
-            const parts = dateString.split(' ')[0].split('/');
-            return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            if (!dateString || dateString === "Invalid Date") return "";
+            const date = new Date(dateString);
+            if (isNaN(date)) return ""; // Handle invalid date
+            return date.toISOString().split('T')[0];
         }
+
 
 
         function formatDate(dateString) {
-            const parts = dateString.split(' ')[0].split('/');
-            const date = new Date(`${parts[1]}/${parts[0]}/${parts[2]} 00:00:00`);
+            if (!dateString || dateString === "Invalid Date") return "Invalid Date";
+            const date = new Date(dateString);
+            if (isNaN(date)) return "Invalid Date"; // Handle invalid date
             const options = { day: '2-digit', month: 'short', year: 'numeric' };
             return date.toLocaleDateString('en-GB', options);
         }
+
 
       function openModal(modalId) {
         document.getElementById(modalId).classList.remove("hidden");

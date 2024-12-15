@@ -21,7 +21,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UAS", "UAS\", "{F518E2D3-FE
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "54916"
+		SlnRelativePath = "UAS\"
 		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E91510AF-AE18-485C-B553-37A899E42F2A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global
