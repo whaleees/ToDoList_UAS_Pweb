@@ -12,3 +12,10 @@ obj/
 # Ignore temporary files
 *.tmp
 *.bak
+
+# Ignore Web.config file
+UAS/Web.config
+
+# Ignore packages directory
+packages/*
+
